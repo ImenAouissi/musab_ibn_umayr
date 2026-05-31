@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/musab_ibn_umayr.html" }
+  ]
+}
