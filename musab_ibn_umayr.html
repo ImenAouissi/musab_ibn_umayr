@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مصعب بن عمير – السفير الأول</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: #8a6f30;
+    --dark: #0d0d0d;
+    --darker: #080808;
+    --sand: #F5EDD8;
+    --sand-dim: #e0d4b8;
+    --brown: #3a2a10;
+    --text: #e8dfc8;
+    --text-dim: #b0a080;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--darker);
+    color: var(--text);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 17px;
+    line-height: 1.9;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 30%, rgba(201,168,76,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 100% 80% at 80% 80%, rgba(58,42,16,0.5) 0%, transparent 60%),
+      linear-gradient(180deg, #0d0d0d 0%, #1a1205 50%, #0d0d0d 100%);
+    z-index: 0;
+  }
+
+  .geometric-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.06;
+    background-image:
+      repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%),
+      repeating-linear-gradient(-45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+    background-size: 40px 40px;
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    padding: 0.35rem 1.4rem;
+    margin-bottom: 2.5rem;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    animation: fadeInDown 1s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Amiri', serif;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 80px rgba(201,168,76,0.4);
+    animation: fadeInUp 1s ease 0.2s both;
+  }
+
+  .hero-subtitle {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: var(--text-dim);
+    margin-bottom: 3rem;
+    animation: fadeInUp 1s ease 0.4s both;
+  }
+
+  .hero-divider {
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 2.5rem;
+    animation: fadeIn 1s ease 0.6s both;
+  }
+
+  .hero-intro {
+    font-size: 1.1rem;
+    color: var(--sand-dim);
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease 0.8s both;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--gold-dim);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    animation: bounce 2s infinite;
+  }
+
+  .scroll-indicator::after {
+    content: '↓';
+    font-size: 1.2rem;
+  }
+
+  /* ─── LAYOUT ─── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ─── SECTIONS ─── */
+  .section {
+    padding: 6rem 0;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--sand);
+    margin-bottom: 2.5rem;
+    line-height: 1.3;
+  }
+
+  .section-title span {
+    color: var(--gold);
+  }
+
+  p {
+    color: var(--text-dim);
+    margin-bottom: 1.4rem;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  /* ─── INFO CARD ─── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 3rem 0;
+  }
+
+  .info-card {
+    background: rgba(201,168,76,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 2px;
+    padding: 1.5rem;
+    transition: border-color 0.3s;
+  }
+
+  .info-card:hover { border-color: var(--gold-dim); }
+
+  .info-card .label {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .info-card .value {
+    font-family: 'Amiri', serif;
+    font-size: 1.1rem;
+    color: var(--sand);
+  }
+
+  /* ─── TIMELINE ─── */
+  .timeline { position: relative; padding-right: 2rem; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, var(--gold-dim), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-right: 2.5rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 12px rgba(201,168,76,0.6);
+  }
+
+  .timeline-year {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-title {
+    font-family: 'Amiri', serif;
+    font-size: 1.3rem;
+    color: var(--sand);
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-text { font-size: 0.95rem; color: var(--text-dim); }
+
+  .timeline-age {
+    display: inline-block;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.35);
+    color: var(--gold-light);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 0.2rem 0.85rem;
+    border-radius: 20px;
+    margin-bottom: 0.5rem;
+    font-family: 'Tajawal', sans-serif;
+  }
+
+  /* ─── QUOTE ─── */
+  .quote-block {
+    position: relative;
+    background: rgba(201,168,76,0.06);
+    border-right: 3px solid var(--gold);
+    padding: 2rem 2rem 2rem 1.5rem;
+    margin: 2.5rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .quote-block::before {
+    content: '❝';
+    position: absolute;
+    top: -0.5rem;
+    right: 1.5rem;
+    font-size: 3rem;
+    color: var(--gold-dim);
+    font-family: serif;
+    line-height: 1;
+  }
+
+  .quote-text {
+    font-family: 'Amiri', serif;
+    font-size: 1.15rem;
+    color: var(--sand);
+    line-height: 1.8;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .quote-source {
+    font-size: 0.82rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.1em;
+    margin-bottom: 0 !important;
+  }
+
+  /* ─── ACHIEVEMENT PILLS ─── */
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 2rem 0;
+  }
+
+  .pill {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold-light);
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+
+  /* ─── LESSON CARDS ─── */
+  .lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .lesson-card {
+    background: linear-gradient(135deg, rgba(201,168,76,0.07) 0%, rgba(201,168,76,0.02) 100%);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 2px;
+    padding: 1.8rem;
+  }
+
+  .lesson-icon {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .lesson-title {
+    font-family: 'Amiri', serif;
+    font-size: 1.15rem;
+    color: var(--gold-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .lesson-text { font-size: 0.9rem; color: var(--text-dim); }
+
+  /* ─── CLOSING ─── */
+  .closing {
+    text-align: center;
+    padding: 7rem 2rem;
+    background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 70%);
+  }
+
+  .closing-ayah {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.3rem, 3.5vw, 2rem);
+    color: var(--gold-light);
+    line-height: 2;
+    max-width: 650px;
+    margin: 0 auto 1rem;
+  }
+
+  .closing-ref {
+    font-size: 0.82rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.2em;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    font-size: 0.78rem;
+    color: rgba(176,160,128,0.5);
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .section { padding: 4rem 0; }
+    .timeline { padding-right: 1.2rem; }
+    .timeline-item { padding-right: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="geometric-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">بحث تاريخي إسلامي</div>
+    <h1 class="hero-title">مُصعَب بن عُمَير</h1>
+    <p class="hero-subtitle">أبو عبد الله · مصعب الخير · السفير الأوّل في الإسلام</p>
+    <div class="hero-divider"></div>
+    <p class="hero-intro">
+      فتى مكة المدلَّل الذي نبذ النعيم كلَّه، وارتدى ثوب الفقر والجهاد،
+      ليُمسي أوَّل سفير للإسلام وأوَّل من صلَّى الجمعة في المدينة،
+      ثم استُشهد في أُحد وهو يحضن راية النبي ﷺ بعَضُديه.
+    </p>
+  </div>
+  <div class="scroll-indicator">للأسفل</div>
+</section>
+
+<!-- ══════════════ 1. نسبه ══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">أوّلاً</div>
+    <h2 class="section-title">نسبه و<span>صفاته</span></h2>
+
+    <p>
+      هو <strong style="color:var(--sand)">مصعب بن عمير بن هاشم بن عبد مناف بن عبد الدار بن قُصَيّ بن كلاب القرشي العبدري</strong>،
+      يُكنَّى أبا عبد الله، ويُلقَّب بـ"مصعب الخير". ينتمي إلى قبيلة قريش من بني عبد الدار، إحدى أشرف بيوتات مكة.
+    </p>
+    <p>
+      لم يُحدِّد المؤرِّخون تاريخ ولادته بدقة، غير أنَّه استُشهد في غزوة أُحد سنة 3 هـ وعمره نحو أربعين سنة،
+      مما يُرجَّح معه أنه وُلد نحو سنة 40 قبل الهجرة.
+    </p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">الاسم الكامل</div>
+        <div class="value">مصعب بن عمير العبدري القرشي</div>
+      </div>
+      <div class="info-card">
+        <div class="label">الكنية واللقب</div>
+        <div class="value">أبو عبد الله · مصعب الخير</div>
+      </div>
+      <div class="info-card">
+        <div class="label">القبيلة</div>
+        <div class="value">قريش · بنو عبد الدار</div>
+      </div>
+      <div class="info-card">
+        <div class="label">الوفاة</div>
+        <div class="value">شهيداً في غزوة أُحد – 3 هـ</div>
+      </div>
+      <div class="info-card">
+        <div class="label">الزوجة</div>
+        <div class="value">حمنة بنت جحش</div>
+      </div>
+      <div class="info-card">
+        <div class="label">الذرية</div>
+        <div class="value">ابنة واحدة: زينب</div>
+      </div>
+    </div>
+
+    <p>
+      كان مصعب رضي الله عنه <strong style="color:var(--sand)">شابًّا جميلاً رقيق البشرة</strong>، حسن اللِّمَّة، ليس بالقصير ولا بالطويل،
+      يرتدي أحسن الثياب وأرقَّها، ويتعطَّر بأفضل العطور، حتى كان أعطرَ أهل مكة ويلبس النعال الحضرميَّة النفيسة.
+      كانت أمُّه أم خُناس بنت مالك تُغدق عليه من الثروة ما جعله <em>أترف غلام بمكة</em> وأنعمهم.
+    </p>
+
+    <div class="quote-block">
+      <p class="quote-text">
+        "كان مصعب بن عمير أنعمَ غلام بمكة وأجودَه حُلَّةً مع أبويه، ثمَّ لقد رأيتُه جُهد في الإسلام جهدًا شديدًا
+        حتى لقد رأيتُ جلده يتحشَّف كما يتحشَّف جلدُ الحيَّة."
+      </p>
+      <p class="quote-source">— سعد بن أبي وقاص رضي الله عنه</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 2. إسلامه ══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">ثانياً</div>
+    <h2 class="section-title">إسلامُه وما <span>لقيَه</span> من البلاء</h2>
+
+    <p>
+      ما إن بلغت دعوةُ النبي ﷺ مسامعَ مصعب حتى سارع إلى دار الأرقم بن أبي الأرقم واستمع للنبي ﷺ،
+      فأسلم في تلك اللحظة دون تردُّد، وهو يعلم يقينًا أنَّ إسلامَه يعني فقدانَ كلِّ ما ينعم به.
+    </p>
+    <p>
+      كتم مصعبٌ إسلامه عن أمِّه وقومه خشيةَ أذاهم، وكان يتسلَّل إلى النبيِّ ﷺ سرًّا.
+      غير أنَّ عثمان بن طلحة أبصره يُصلِّي فأخبر أهله وأمَّه، فأخذوه <strong style="color:var(--sand)">وحبسوه</strong> في بيته لإجباره على ترك الإسلام،
+      فصمد وثبت، ولم يَهُن ولم يُبدِّل.
+    </p>
+    <p>
+      حين فُتح باب الهجرة إلى الحبشة تسلَّل مصعب من قيوده وهاجر هجرته الأولى، ثم عاد إلى مكة مع المسلمين.
+      وتجلَّت التضحية بأبهى صورها حين قاطعَته أمُّه وجرَّدَته من كلِّ ثروته وميراثه، فأمسى يمشي في ثياب رَثَّة
+      بعد أن كان أنعمَ شباب مكة هيئةً وكسوةً.
+    </p>
+
+    <div class="quote-block">
+      <p class="quote-text">
+        "لقد رأيتُه وإنَّ جلده ليتطاير عنه تطايُرَ جلد الحيَّة، ولقد رأيتُه ينقطع به فما يستطيع أن يمشي،
+        فنَعرض له القِسِيَّ ثم نحمله على عواتقنا."
+      </p>
+      <p class="quote-source">— سعد بن أبي وقاص رضي الله عنه</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 3. السفارة ══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">ثالثاً</div>
+    <h2 class="section-title">السفير <span>الأوَّل</span> في الإسلام</h2>
+
+    <p>
+      بعد بيعة العقبة الأولى سنة 11 من البعثة، كتب نفرٌ من أهل يثرب إلى النبي ﷺ يطلبون مَن يُفقِّههم في الدين ويُقرئهم القرآن.
+      فاختار النبيُّ ﷺ مصعب بن عمير لهذه المهمَّة الجسيمة، فكان بذلك <strong style="color:var(--sand)">أوَّلَ سفير في الإسلام</strong>
+      على الإطلاق، وأوَّلَ مهاجر يقدم المدينة.
+    </p>
+    <p>
+      نزل مصعب على أسعد بن زرارة رضي الله عنه، وانطلق يجوب دور الأنصار قبيلةً قبيلة، يدعوهم إلى الله بالحكمة والموعظة الحسنة.
+      وكان يعلم أنَّ مهمَّته محدودة بسنة واحدة قبل موسم الحج التالي الذي سيلتقي فيه بالنبيِّ ﷺ ومعه فوجٌ كبير من المسلمين الجدد.
+    </p>
+
+    <div class="quote-block">
+      <p class="quote-text">
+        "أوَّلُ من قدم علينا مصعبُ بن عمير، وابن أمِّ مكتوم، وكانا يُقرئان الناس."
+      </p>
+      <p class="quote-source">— البراء بن عازب رضي الله عنه · رواه البخاري</p>
+    </div>
+
+    <p>
+      كان لمصعب مواقف بارزة في إسلام كبار القوم؛ فقد جلس ذات يوم يقرأ القرآن على جماعة من الأنصار،
+      فجاء <strong style="color:var(--sand)">أسيد بن حضير</strong> — سيِّد بني عبد الأشهل — مُغضبًا يُريد طرده،
+      فما كاد يجلس ويستمع حتى أسلم.
+      ثم أسلم بعده <strong style="color:var(--sand)">سعد بن معاذ</strong> — سيِّد الأوس — فكان إسلامه فاتحةً لإسلام قبيلة بأكملها في يوم واحد.
+      وكذلك أسلم على يده <strong style="color:var(--sand)">سعد بن عبادة</strong> سيِّد الخزرج.
+    </p>
+    <p>
+      وكان مصعب أوَّل من أقام صلاة الجمعة في المدينة المنورة؛ إذ كتب إلى النبي ﷺ يستأذنه في ذلك فأذن له،
+      فكانت تلك الجمعةُ الأولى في تاريخ الإسلام خارج مكة.
+    </p>
+    <p>
+      حين عاد إلى مكة في موسم الحج قبيل الهجرة، جاء معه <strong style="color:var(--sand)">ثلاثة وسبعون رجلاً وامرأتان</strong>
+      من أهل يثرب، بايعوا النبيَّ ﷺ في بيعة العقبة الثانية الكبرى على النصرة والجهاد.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════ 4. المسيرة الزمنية ══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">رابعاً</div>
+    <h2 class="section-title">مراحل <span>حياته</span> في سطور</h2>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-year">قبل الهجرة بـ 40 سنة تقريباً</div>
+        <div class="timeline-age">عمره: حديث الولادة</div>
+        <div class="timeline-title">الولادة في نعيم مكة</div>
+        <div class="timeline-text">وُلد مصعب لأسرة ثرية في مكة، فنشأ في رغد العيش والترف، وصار أشهر فتيانها جمالاً ولباسًا وعطرًا.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">السنة الأولى أو الثانية من البعثة</div>
+        <div class="timeline-age">عمره: نحو 27 سنة</div>
+        <div class="timeline-title">الإسلام في دار الأرقم</div>
+        <div class="timeline-text">أسلم مصعب سرًّا في دار الأرقم بن أبي الأرقم، وهو من السابقين الأوَّلين إلى الإسلام.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">السنة الخامسة من البعثة</div>
+        <div class="timeline-age">عمره: نحو 32 سنة</div>
+        <div class="timeline-title">الهجرة الأولى إلى الحبشة</div>
+        <div class="timeline-text">هاجر مع المسلمين إلى الحبشة فرارًا من الاضطهاد القرشي، ثم عاد إلى مكة مع من عاد.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">السنة الحادية عشرة من البعثة</div>
+        <div class="timeline-age">عمره: نحو 38 سنة</div>
+        <div class="timeline-title">بيعة العقبة الأولى والسفارة إلى يثرب</div>
+        <div class="timeline-text">اختاره النبيُّ ﷺ ليكون سفيره إلى يثرب بعد بيعة العقبة الأولى، فأنجز مهمَّته بنجاح منقطع النظير.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">السنة الثانية عشرة من البعثة</div>
+        <div class="timeline-age">عمره: نحو 39 سنة</div>
+        <div class="timeline-title">العودة مع 75 من الأنصار وبيعة العقبة الثانية</div>
+        <div class="timeline-text">أثمرت جهودُه الدعوية في إسلام ثلاثة وسبعين رجلاً وامرأتين، أدَّوا بيعة العقبة الكبرى.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">السنة الثانية من الهجرة</div>
+        <div class="timeline-age">عمره: نحو 42 سنة</div>
+        <div class="timeline-title">غزوة بدر الكبرى</div>
+        <div class="timeline-text">شهد غزوة بدر وكان فيها حاملَ لواء المهاجرين، أولَ انتصار كبير للمسلمين.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">شوال من السنة الثالثة هجرية</div>
+        <div class="timeline-age">عمره: نحو 43 سنة</div>
+        <div class="timeline-title">الشهادة في أُحد</div>
+        <div class="timeline-text">استُشهد في غزوة أُحد وهو يحمل لواء المسلمين، بعد أن قُطعت يمناه ثم يسراه فضمَّ الراية بعضُديه حتى لفظ أنفاسه الأخيرة.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 5. الشهادة ══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">خامساً</div>
+    <h2 class="section-title">ملحمة <span>الشهادة</span> في أُحد</h2>
+
+    <p>
+      في السابع من شوال سنة 3 هـ، خرج المسلمون إلى أُحد، وكان مصعب يحمل لواء المهاجرين — وهو أرفعُ وأثقلُ أمانة.
+      حين اضطربت صفوف المسلمين وانكشف ظهرُهم بسبب مخالفة الرماة لأمر النبيِّ ﷺ، تكاثر المشركون عليهم.
+    </p>
+    <p>
+      انبرى ابن قَمِئة الليثي نحو مصعب يريد إسقاط اللواء وقطعَ قلبِ المسلمين.
+      <strong style="color:var(--sand)">ضرب يدَه اليُمنى فقطعها</strong>، فأمسك مصعب اللواءَ بيده اليُسرى.
+      فقطعها ابن قمئة ثانيةً. فضمَّ مصعبٌ — رضي الله عنه — الراية بعَضُديه إلى صدره وهو يقول:
+      <em style="color:var(--gold-light)">"وما محمدٌ إلا رسول قد خلَت من قبله الرُّسُل"</em>.
+      ثم طعنه ابن قمئة برُمح في صدره فسقط شهيدًا.
+    </p>
+    <p>
+      مرَّ النبيُّ ﷺ بعد المعركة على جثمان مصعب فوقف عليه وقرأ:
+    </p>
+
+    <div class="closing" style="padding: 2rem; background: rgba(201,168,76,0.04); border: 1px solid rgba(201,168,76,0.15); border-radius: 2px; margin: 1.5rem 0;">
+      <p class="closing-ayah">
+        ﴿ مِنَ الْمُؤْمِنِينَ رِجَالٌ صَدَقُوا مَا عَاهَدُوا اللَّهَ عَلَيْهِ
+        فَمِنْهُم مَّن قَضَىٰ نَحْبَهُ وَمِنْهُم مَّن يَنتَظِرُ
+        وَمَا بَدَّلُوا تَبْدِيلًا ﴾
+      </p>
+      <p class="closing-ref">الأحزاب: 23</p>
+    </div>
+
+    <p>
+      لم يجد الصحابة ما يكفِّنون به مصعبًا سوى <strong style="color:var(--sand)">نَمِرة</strong> (كساء صغير)،
+      فكانوا إذا غطَّوا رأسه بدَت رجلاه، وإذا غطَّوا رجليه بدا رأسه.
+      فقال النبي ﷺ: "غطُّوا رأسه واجعلوا على رجليه من الإذخر."
+    </p>
+    <p>
+      هذا هو ختام رجل آثر الآخرة على الدنيا، فأفقر ما كان أغنى شباب مكة، واستُشهد وليس له كفنٌ يستره.
+    </p>
+
+    <div class="quote-block">
+      <p class="quote-text">
+        "هاجرنا مع رسول الله ﷺ في سبيل الله، نبتغي وجه الله، فوجب أجرُنا على الله.
+        فمنَّا من مضى ولم يأكل من أجره في دنياه شيئاً، منهم مصعب بن عمير."
+      </p>
+      <p class="quote-source">— خبَّاب بن الأرَتّ رضي الله عنه</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 6. مناقبه ══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">سادساً</div>
+    <h2 class="section-title">مناقبُه <span>وفضائلُه</span></h2>
+
+    <div class="pills">
+      <span class="pill">من السابقين الأوَّلين إلى الإسلام</span>
+      <span class="pill">أوَّل سفير في الإسلام</span>
+      <span class="pill">أوَّل مَن صلَّى الجمعة في المدينة</span>
+      <span class="pill">أوَّل مهاجر إلى المدينة</span>
+      <span class="pill">هاجر الهجرتين: الحبشة والمدينة</span>
+      <span class="pill">حامل لواء المهاجرين في بدر وأُحد</span>
+      <span class="pill">شهيد أُحد</span>
+      <span class="pill">أسلم على يديه سادة الأوس والخزرج</span>
+    </div>
+
+    <p>
+      قال ابن الأثير في كتابه "أسد الغابة في معرفة الصحابة":
+      "كان مصعب بن عمير من فضلاء الصحابة وخيارهم ومن السابقين إلى الإسلام."
+    </p>
+    <p>
+      وقد حمل مصعب لواء المهاجرين في غزوتي <strong style="color:var(--sand)">بدر وأُحد</strong>، وهي المنزلة الرفيعة التي لا تُناط إلا بخيار القوم وأشجعهم.
+      وكان آخاه النبيُّ ﷺ بعد الهجرة مع سعد بن أبي وقاص، أو أبي أيوب الأنصاري على رواية أخرى.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════ 7. الدروس ══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">سابعاً</div>
+    <h2 class="section-title">الدروس <span>والعِبَر</span></h2>
+
+    <div class="lessons-grid">
+      <div class="lesson-card">
+        <span class="lesson-icon">🕊️</span>
+        <div class="lesson-title">إيثار الآخرة على الدنيا</div>
+        <div class="lesson-text">ترك مصعب كل ثروته وترفه طائعاً مختاراً، مما يعلِّمنا أنَّ القيمَ الحقيقية لا ثمن لها.</div>
+      </div>
+      <div class="lesson-card">
+        <span class="lesson-icon">💬</span>
+        <div class="lesson-title">الكفاءة الدعوية</div>
+        <div class="lesson-text">نجح في إسلام سادة يثرب وقبائلهم خلال سنة واحدة، بالحكمة والخُلُق الحسن لا بالإكراه.</div>
+      </div>
+      <div class="lesson-card">
+        <span class="lesson-icon">🛡️</span>
+        <div class="lesson-title">الثبات حتى آخر نفَس</div>
+        <div class="lesson-text">ضمَّ الراية بعضديه بعد قطع يديه، فكانت النهاية درسًا أبلغ من ألف خطبة.</div>
+      </div>
+      <div class="lesson-card">
+        <span class="lesson-icon">✨</span>
+        <div class="lesson-title">قيمة التضحية الحقيقية</div>
+        <div class="lesson-text">استُشهد وليس له إلا نمرة تستره، وكان قبلها أثرى شباب مكة — تذكير بأنَّ الشرف لا بالمال.</div>
+      </div>
+      <div class="lesson-card">
+        <span class="lesson-icon">📖</span>
+        <div class="lesson-title">بناء المجتمع بالعلم</div>
+        <div class="lesson-text">أُرسل ليُعلِّم القرآن ويُفقِّه الناس، فبنى مجتمع المدينة المؤمن قبل أن يصل إليه النبيُّ ﷺ.</div>
+      </div>
+      <div class="lesson-card">
+        <span class="lesson-icon">🌟</span>
+        <div class="lesson-title">نموذج الشباب المسلم</div>
+        <div class="lesson-text">كان شابًّا في مقتبل عمره حين حمل هذه المسؤوليات الجسيمة، مما يُلهم كلَّ شاب بإمكانية التغيير.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 7.5 الأسرة ══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">ثامناً</div>
+    <h2 class="section-title">أسرتُه <span>وذووه</span></h2>
+
+    <!-- زوجته -->
+    <h3 style="font-family:'Amiri',serif; color:var(--gold-light); font-size:1.4rem; margin-bottom:1rem; margin-top:2rem;">◈ زوجتُه: حمنة بنت جحش رضي الله عنها</h3>
+    <p>
+      تزوَّج مصعبٌ رضي الله عنه من <strong style="color:var(--sand)">حمنة بنت جحش الأسدية</strong>،
+      وهي صحابية جليلة من أشرف بيوتات العرب؛ أمُّها أميمة بنت عبد المطلب عمَّةُ النبيِّ ﷺ،
+      وأختها أمُّ المؤمنين زينب بنت جحش زوجة النبيِّ ﷺ.
+      فكانت حمنةُ إذاً قريبةً من النبيِّ ﷺ بصلة رحمٍ وثيقة.
+    </p>
+    <p>
+      كانت حمنة رضي الله عنها مسلمةً مهاجرةً من السابقات إلى الإسلام، تكنَّى بـ<strong style="color:var(--sand)">أمّ حبيبة</strong>.
+      شهدت غزوة أحد تسقي الجرحى وتُداويهم، فكانت شريكةً في الجهاد مع زوجها.
+      وبعد استشهاد مصعب رضي الله عنه، تزوَّجت من الصحابي الجليل
+      <strong style="color:var(--sand)">طلحة بن عبيد الله</strong> رضي الله عنه وأنجبت منه محمداً السجَّاد وعمران.
+    </p>
+
+    <!-- أولاده -->
+    <h3 style="font-family:'Amiri',serif; color:var(--gold-light); font-size:1.4rem; margin-bottom:1rem; margin-top:2.5rem;">◈ ذرِّيَّتُه</h3>
+    <p>
+      لم يُرزق مصعبٌ رضي الله عنه إلا بـ<strong style="color:var(--sand)">ابنةٍ واحدة</strong> من حمنة، اسمها
+      <strong style="color:var(--sand)">زينب</strong>، ولم يكتحل بها طويلاً قبل أن يُستشهد.
+      وقد تزوَّجت زينبُ من عبد الله بن عبد الله بن أبي أمية بن المغيرة.
+    </p>
+
+    <!-- أمه -->
+    <h3 style="font-family:'Amiri',serif; color:var(--gold-light); font-size:1.4rem; margin-bottom:1rem; margin-top:2.5rem;">◈ أمُّه: خُنَاس بنت مالك</h3>
+    <p>
+      كانت أمُّه <strong style="color:var(--sand)">خُناس بنت مالك بن المضرَّب العامرية</strong> امرأةً ذات شخصية فذَّة مهيبة،
+      يخشاها كلُّ من حولها. وكان مصعب رضي الله عنه — الذي لا يخاف شيئاً في الدنيا — يخشى أمَّه وحدها،
+      حتى قال: "لم يكن يخاف أحداً ولا يحسب حساب أحد سوى أمه".
+    </p>
+    <p>
+      حين علمت بإسلامه حبسَته وجرَّدَته من كل ثروته وميراثه، وقالت له حين أبَت جهودُها:
+      <em style="color:var(--gold-light)">"اذهب لشأنك، لستُ لك أمًّا."</em>
+      غير أنَّ مصعباً — في أعمق مواقف الوفاء — قبَّل رأسها عند وداعه الأخير وقال لها:
+      <em style="color:var(--gold-light)">"أماه، إني لكِ ناصح وعليكِ شفوق، فاشهدي أن لا إله إلا الله وأنَّ محمداً عبده ورسوله."</em>
+    </p>
+
+    <div class="quote-block">
+      <p class="quote-text">
+        أسلمت خُناس بنت مالك في نهاية المطاف قبل صلح الحديبية سنة 6 هجرية — أي بعد استشهاد ابنها بسنوات ثلاث.
+      </p>
+      <p class="quote-source">— استناداً إلى مقالة ويكيبيديا: فاطمة العامرية</p>
+    </div>
+
+    <!-- أبوه -->
+    <h3 style="font-family:'Amiri',serif; color:var(--gold-light); font-size:1.4rem; margin-bottom:1rem; margin-top:2.5rem;">◈ أبوه: عُمَير بن هاشم</h3>
+    <p>
+      أمَّا والده <strong style="color:var(--sand)">عُمير بن هاشم بن عبد مناف العبدري</strong> فكان رجلاً من أشراف قريش،
+      من بني عبد الدار، ينتمي إلى إحدى أعرق بيوتات مكة وأكثرها ثراءً.
+      كان يُحبُّ مصعباً حبًّا شديداً ويُغدق عليه مع أمِّه، حتى جعلاه أترفَ غلام في مكة وأنعمهم.
+    </p>
+    <p>
+      لا تُفصِّل كتب السيرة كثيراً في موقفه الشخصي من إسلام ابنه، غير أن الروايات تُشير إلى أن الأسرة بأكملها
+      — لا الأم وحدها — اشتركت في حبس مصعب ومحاولة ثنيه عن دينه.
+      ولم يُذكر أن والده أسلم، وبهذا كان مصعبٌ يتيمَ الإسلام في قلب أسرته، يتبرَّأ منه أهلُه وهو يُوالي ربَّه.
+    </p>
+
+  </div>
+</section>
+
+<!-- ══════════════ CLOSING ══════════════ -->
+<div class="closing">
+  <p class="closing-ayah">
+    رضي الله عن مصعب بن عمير
+    وجمعنا به في جنَّات النعيم
+  </p>
+  <p class="closing-ref" style="margin-top:1.5rem;">
+    ✦ &nbsp; بحث إسلامي تاريخي &nbsp; ✦
+  </p>
+</div>
+
+<footer>
+  المصادر: صحيح البخاري · أسد الغابة لابن الأثير · الإصابة لابن حجر · سير أعلام النبلاء للذهبي · ويكيبيديا العربية
+  <br><br>
+  <span style="color:#8a6f30;">المؤلف</span> &nbsp;·&nbsp; إيمان & معاذ
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  © 2026 جميع الحقوق محفوظة
+</footer>
+
+</body>
+</html>
